@@ -1,4 +1,4 @@
-import {Plugin} from "prosemirror-state"
+import {Plugin} from "../../prosemirror-state/src/index.js"
 
 // ::- Input rules are regular expressions describing a piece of text
 // that, when typed, causes something to happen. This might be

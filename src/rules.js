@@ -1,4 +1,4 @@
-import {InputRule} from "./inputrules"
+import {InputRule} from "./inputrules.js"
 
 // :: InputRule Converts double dashes to an emdash.
 export const emDash = new InputRule(/--$/, "—")
