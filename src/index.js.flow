@@ -1,0 +1,42 @@
+// @flow strict
+
+import type { EditorState, Transaction, Plugin } from "../../prosemirror-state/src/index.js"
+import type { NodeType, Node } from "../../prosemirror-model/src/index.js"
+
+export interface RuleHandler {
+  (EditorState, match:string[], start:number, end:number):?Transaction;
+}
+
+export interface Rule {
+  match:RegExp;
+  handler:RuleHandler;
+}
+
+declare export class InputRule implements Rule {
+  match:RegExp;
+  handler:RuleHandler;
+  constructor(RegExp, string | RuleHandler):void
+}
+
+declare export function inputRules <a>(config: {rules: InputRule[]}):Plugin<a>
+declare export function undoInputRule(EditorState, dispatch?:(Transaction => void)):boolean
+declare export var emDash:InputRule
+declare export var ellipsis: InputRule
+declare export var openDoubleQuote: InputRule
+declare export var closeDoubleQuote: InputRule
+declare export var openSingleQuote: InputRule
+declare export var closeSingleQuote: InputRule
+declare export var smartQuotes: InputRule[]
+
+declare export function wrappingInputRule(
+  RegExp,
+  NodeType,
+  getAttrs: ?Object | (string) => ?Object,
+  joinPredicate:?(string[], Node) => boolean
+):InputRule
+
+declare export function textblockTypeInputRule(
+  RegExp,
+  NodeType,
+  getAttrs: ?Object | (string) => ?Object
+):InputRule
